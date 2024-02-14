@@ -30,7 +30,7 @@
                 </h6>
                 <div class="flex justify-end items-end space-x-2">
                     <i class="fa-duotone fa-signal-bars py-1 text-2xl font-bold" style="color: #506fff;">
-                    </i>
+                    </i>fkdfkdsfijsdj
                 </div>
             </div>
         </div>

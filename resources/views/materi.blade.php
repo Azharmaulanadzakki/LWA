@@ -39,8 +39,8 @@
                 <div class="flex justify-between my-20 mx-20">
                     <!-- Video Iframe -->
                     <div class="w-[50rem] h-[30rem] rounded-2xl shadow-xl shadow-gray-400 bg-gray-200">
-                        <iframe src="{{ $materi->tautan }}" title="YouTube video player" frameborder="" allowfullscreen
-                            picture in picture class="w-full h-full rounded-2xl">
+                        <iframe src="{{ str_replace('watch?v=', 'embed/', $materi->tautan) }}" title="YouTube video player"
+                            frameborder="" allowfullscreen picture in picture class="w-full h-full rounded-2xl">
                         </iframe>
                         <div class="inline-flex justify-end space-x-[27.5rem] mt-8 w-full">
                             @if ($materis->previousPageUrl())
@@ -86,8 +86,8 @@
                         <section class="bg-white p-4 rounded-2xl shadow">
                             <h2 class="text-lg font-semibold mb-4">Playlist</h2>
                             <ul>
-                                {{-- @foreach ($playlists as $playlist)
-                                    <a href="{{ '/materi/' . $parent_id . '?page=' . $playlist->id }}">
+                                @foreach ($playlists as $playlist)
+                                    <a href="{{ '/view-materi/' . $parent_id . '?page=' . $playlist->id }}">
                                         <button
                                             class="px-4 py-2 rounded-3xl bg-gray-200 hover:bg-gray-300 transition-colors duration-300 w-full my-2 text-left">
                                             <i class="fa-solid fa-circle-play text-xl my-1" style="color: #506fff"></i> 
@@ -96,7 +96,7 @@
                                             </span>
                                         </button>
                                     </a>
-                                @endforeach --}}
+                                @endforeach
                             </ul>
                         </section>
                     </div>

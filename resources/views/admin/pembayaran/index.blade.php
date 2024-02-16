@@ -21,13 +21,13 @@
                     </div>
                 </div>
 
-                <form action="{{ route('pembayaran.index') }}" method="GET" class="flex items-start justify-start ">
+                {{-- <form action="{{ route('pembayaran.index') }}" method="GET" class="flex items-start justify-start ">
                     <div class="flex items-center">
                         <input type="text" name="search" class="p-2 border rounded-md mr-2"
                             placeholder="Cari pembayaran" value="{{ request('search') }}">
                         <button type="submit" class="bg-blue-500 text-white px-5 py-2 rounded-md">Cari</button>
                     </div>
-                </form>
+                </form> --}}
 
 
                 <div class="container antialiased mx-auto mt-5">
@@ -53,9 +53,6 @@
                                     <th scope="col" class="px-6 py-3">
                                         Status
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
-
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,38 +76,8 @@
                                             Rp. {{ $pembayaran->harga }}
                                         </td>
                                         <td class="px-6 py-4">
+                                            div
                                             {{ $pembayaran->status == 0 ? 'Pending' : 'Selesai' }}
-                                        </td>
-                                        <td class="px-6 py-4 flex gap-2 justify-center text-right items-center">
-                                            <form
-                                                action="{{ route('pembayaran.edit', ['pembayaran' => $pembayaran->id]) }}">
-                                                <button
-                                                    class="inline-flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md mr-4">
-                                                    Edit
-                                                </button>
-                                            </form>
-                                            <form action="{{ route('pembayaran.destroy', $pembayaran->id) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md mr-4">
-                                                    Delete
-                                                </button>
-                                            </form>
-
-                                            {{-- <a href="{{ route('user.edit', ['user' => $user->id]) }}"
-                                                class="font-medium text-blue-600 hover:underline">Edit</a>
-
-                                            <form action="{{ route('user.destroy', ['user' => $user->id]) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="font-medium text-red-600 hover:underline">
-                                                    Delete
-                                                </button>
-                                            </form> --}}
-
                                         </td>
                                     </tr>
                                 @endforeach

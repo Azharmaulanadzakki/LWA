@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Mapel::factory(10)->create();
+        // \App\Models\Mapel::factory(10)->create();
+        $this->call(MapelSeeder::class);
+        // $this->call(UserSeeder::class);
     }
 }

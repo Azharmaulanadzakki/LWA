@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
-class AuthController extends Controller
+class   AuthController extends Controller
 {
 
     public function profile()
@@ -23,12 +23,6 @@ class AuthController extends Controller
 
         return view('auth.profile', compact('user'));
     }
-
-    // public function editProfile()
-    // {
-    //     $user = Auth::user();
-    //     return view('auth.edit-profile', compact('user'));
-    // } itu gaguna salah inii  dahla 
 
     public function updateProfile(Request $request)
     {

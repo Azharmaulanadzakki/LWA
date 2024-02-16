@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -20,43 +21,16 @@ class HomeController extends Controller
             return $query->where('judul', 'like', '%' . $search . '%')
                 ->orWhere('description', 'like', '%' . $search . '%');
         })
-        ->latest()
-        ->paginate();
+            ->latest()
+            ->paginate();
 
         $mapel = Mapel::find(1)->users;
-        
 
         return view('home', compact('mapels', 'search'));
     }
 
-    // public function materi(Request $request, $parent_id)
-    // {
-    //     // Ambil data parent dari tabel mapels sesuai dengan $parent_id
-    //     $parent = DB::table('mapels')->find($parent_id);
-
-    //     // Jika $parent tidak ditemukan, bisa ditangani di sini
-    //     if (!$parent) {
-    //         abort(404); // atau atur sesuai kebutuhan aplikasi Anda
-    //     }
-
-    //     // Ambil data materi yang terkait dengan $parent_id yang dipilih dengan paginasi
-    //     $materis = DB::table('materis')
-    //         ->where('parent_id', $parent_id)
-    //         ->paginate(1); // Sesuaikan dengan jumlah item per halaman yang diinginkan
-
-    //     //buat playlist
-    //     $playlists = DB::table('materis')
-    //         ->where('parent_id', $parent_id)
-    //         ->get();
-
-    //     $parent_id = $parent_id;
-
-    //     // Kirimkan variabel $parent dan $materis ke tampilan
-    //     return view('materi', compact('parent', 'materis', 'playlists', 'parent_id'));
-    // }
-
-
-    public function getMateri($parent_id){
+    public function getMateri($parent_id)
+    {
         // Ambil data parent dari tabel mapels sesuai dengan $parent_id
         $parent = Mapel::find($parent_id);
 
@@ -64,10 +38,10 @@ class HomeController extends Controller
         $user = Auth::user();
 
         // dd($parent->pivot);
-        
+
         foreach ($parent->users as $value) {
             if ($value->id == $user->id) {
-                $mapelUser = $value;    
+                $mapelUser = $value;
             }
         }
 
@@ -75,8 +49,9 @@ class HomeController extends Controller
             return $this->payment($parent_id);
         }
     }
-    
-    function viewMateri($parent_id) {
+
+    function viewMateri($parent_id)
+    {
         $parent = Mapel::find($parent_id);
 
         // Jika $parent tidak ditemukan, bisa ditangani di sini
@@ -86,14 +61,22 @@ class HomeController extends Controller
 
         // Ambil data materi yang terkait dengan $parent_id yang dipilih dengan paginasi
         $materis = DB::table('materis')
-        ->where('parent_id', $parent_id)
-        ->paginate(1); // Sesuaikan dengan jumlah item per halaman yang diinginkan
-        
+            ->where('parent_id', $parent_id)
+            ->paginate(1); // Sesuaikan dengan jumlah item per halaman yang diinginkan
+
+            $playlists = DB::table('materis')
+            ->where('parent_id', $parent_id)
+            ->get();
+
+            $parent_id = $parent_id;
+
+
         // Kirimkan variabel $parent dan $materis ke tampilan
-        return view('materi', compact('materis', 'parent'));
+        return view('materi', compact('materis', 'parent', 'playlists', 'parent_id'));
     }
 
-    function payment($parent_id) {
+    function payment($parent_id)
+    {
 
         // Ambil data parent dari tabel mapels sesuai dengan $parent_id
         $parent = Mapel::find($parent_id);
@@ -134,10 +117,9 @@ class HomeController extends Controller
         $pembayaran->update();
 
         return response()->json([
-            'snapToken' => $snapToken, 
-            'pembayaran_id' => $pembayaran->id 
+            'snapToken' => $snapToken,
+            'pembayaran_id' => $pembayaran->id
         ]);
-
     }
 
     public function destroy(Pembayaran $pembayaran)
@@ -146,28 +128,42 @@ class HomeController extends Controller
         $pembayaran->delete();
     }
 
-    function midtransCallback(Request $request) {
+    function midtransCallback(Request $request)
+    {
         $serverKey = config('midtrans.server_key');
-        $hashed = hash('sha512', $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+        $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
 
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture' || $request->transaction_status == 'settelment') {
                 $pembayaran = Pembayaran::find($request->order_id);
-                $pembayaran->update(['status' => '1', 'snapToken' => null]);
+                $pembayaran->update(['status' => 'sukses', 'snapToken' => null]);
 
                 $mapel = Mapel::find($pembayaran->mapel_id);
                 $user = Mapel::find($pembayaran->user_id);
                 MapelUser::create(['mapel_id' => $mapel->id, 'user_id' => $user->id]);
             }
         }
+
+        // $serverKey = config('services.midtrans.serverKey');
+        // $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        // $transaksi = Pembayaran::where('id', $request->order_id)->first();
+
+        // if ($hashed == $request->signature_key) {
+        //     if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
+        //         $transaksi->update(['status' => 'sukses']);
+        //     } elseif ($request->transaction_status == 'expire') {
+        //         $transaksi->update(['status' => 'gagal']);
+        //     }
+        // }
     }
 
-    function callback(Pembayaran $pembayaran) {
-                $pembayaran->update(['status' => '1', 'snapToken' => null]);
+    function callback(Pembayaran $pembayaran)
+    {
+        $pembayaran->update(['status' => 'success', 'snapToken' => null]);
 
-                $mapel = Mapel::find($pembayaran->mapel_id);
-                $user = Mapel::find($pembayaran->user_id);
-                MapelUser::create(['mapel_id' => $mapel->id, 'user_id' => $user->id]);
+        $mapel = Mapel::find($pembayaran->mapel_id);
+        $user = Mapel::find($pembayaran->user_id);
+        MapelUser::create(['mapel_id' => $mapel->id, 'user_id' => $user->id]);
     }
 
     public function tools($parent_id = null)

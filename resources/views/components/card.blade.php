@@ -30,7 +30,7 @@
                 </h6>
                 <div class="flex justify-end items-end space-x-2">
                     <i class="fa-duotone fa-signal-bars py-1 text-2xl font-bold" style="color: #506fff;">
-                    </i>fkdfkdsfijsdj
+                    </i>
                 </div>
             </div>
         </div>
@@ -57,8 +57,6 @@
                 window.snap.pay(response.snapToken, {
                     onSuccess: function(result) {
                         /* You may add your own implementation here */
-                        console.log(result);
-
                         $.get("{{ route('callback', '') }}" + "/" +
                             response.pembayaran_id,
                             function(textStatus, jqXHR) {},
@@ -89,7 +87,7 @@
                 });
             },
             error: function() {
-                // window.location.href = "{{ route('materis.view', '') }}" + "/" + mapel;
+                window.location.href = "{{ route('materis.view', '') }}" + "/" + mapel;
             }
         });
     }

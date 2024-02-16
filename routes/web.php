@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/view-materi/{parent_id}', [HomeController::class, 'viewMateri'])->name('materis.view');
     Route::get('/payment/{parent_id}', [HomeController::class, 'payment'])->name('payment');
     Route::delete('/payment/{pembayaran}', [HomeController::class, 'destroy'])->name('payment.destroy');
-    Route::delete('/callback/{pembayaran}', [HomeController::class, 'callback'])->name('callback');
+    Route::get('/callback/{pembayaran}', [HomeController::class, 'callback'])->name('callback');
     Route::get('/tools', [HomeController::class, 'tools'])->name('tools');
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');

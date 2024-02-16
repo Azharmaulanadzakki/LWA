@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', [0, 1])->default(0); // Status 0 Belum bayar. 1 Sudah bayar
+            $table->string('status')->default('pending'); // Status 0 Belum bayar. 1 Sudah bayar
             $table->decimal('harga', 10, 2); // Menggunakan tipe data decimal
             $table->date('tanggal');
             $table->foreignIdFor(Mapel::class)->constrained()->onDelete('cascade');

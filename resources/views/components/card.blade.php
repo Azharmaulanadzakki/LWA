@@ -35,17 +35,9 @@
             </div>
         </div>
     </div>
-    {{-- </div> --}}
 @endforeach
 
 <script>
-    // const payButton = document.getElementById("pay-button");
-    // payButton.addEventListener("click", () => {
-    //     console.log("a");
-    // })
-
-
-
     const payButton = (mapel) => {
         console.log(mapel);
         $.ajax({
@@ -90,5 +82,5 @@
                 window.location.href = "{{ route('materis.view', '') }}" + "/" + mapel;
             }
         });
-    }
+    };
 </script>

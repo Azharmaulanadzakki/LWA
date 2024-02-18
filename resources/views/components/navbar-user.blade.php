@@ -20,7 +20,7 @@
                 </defs>
             </svg>
         </a>
-        <div class="hidden md:flex md:order-2 space-x-3 md:space-x-1 rtl:space-x-reverse relative">
+        <div class="hidden md:flex md:order-2 space-x-3 md:space-x-1 rtl:space-x-reverse relative z-50">
             <ul
                 class="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg md:space-x-2 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                 <li class="font-bold cursor-pointer flex items-center" id="userDropdownToggle">

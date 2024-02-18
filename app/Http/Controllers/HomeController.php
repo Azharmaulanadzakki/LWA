@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FAQ;
+use App\Models\User;
 use App\Models\Mapel;
 use App\Models\MapelUser;
 use App\Models\Pembayaran;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,10 @@ class HomeController extends Controller
             ->paginate();
 
         $mapel = Mapel::find(1)->users;
+        $faqs = FAQ::latest()->take(5)->get();
 
-        return view('home', compact('mapels', 'search'));
+
+        return view('home', compact('mapels', 'search', 'faqs'));
     }
 
     public function getMateri($parent_id)

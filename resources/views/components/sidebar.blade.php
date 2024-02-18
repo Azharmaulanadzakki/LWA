@@ -67,15 +67,30 @@
                 </ul>
             </div>
             <div class="min-w-max">
-                <a href="{{ route('admin.profile') }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button
-                        class="group flex items-center space-x-4 px-4 py-3 text-gray-600 hover:bg-gray-600 hover:text-white w-full">
-                        <i class="fa-solid fa-user-gear"></i>
-                        <span class="group-hover:text-white">Edit Profile</span>
+                <div class="relative">
+                    <button id="dropdown-btn"
+                        class="group flex items-end space-x-6 px-4 py-3 text-gray-600 hover:bg-gray-600 hover:text-white w-full focus:outline-none">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="group-hover:text-white">Settings</span>
                     </button>
-                </a>
+                    <ul id="dropdown-menu" class="relative hidden bg-gray-200 rounded-md mb-6">
+                        <!-- Dropdown content here -->
+                        <li class="relative">
+                            <a href="{{ route('admin.profile') }}" method="post"
+                                class="block px-6 py-2 text-gray-800 hover:bg-gray-400 duration-300">
+                                <i class="fa-solid fa-user-gear space-x-4"></i>
+                                Edit Profile
+                            </a>
+                        </li>
+                        <li class="relative">
+                            <a href="{{ route('faq.index') }}"
+                                class="block px-6 py-2 text-gray-800 hover:bg-gray-400 duration-300">
+                                <i class="fa-solid fa-question space-x-4"></i>
+                                FAQ
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     @method('DELETE')
@@ -93,3 +108,26 @@
         </div>
     </div>
 </div>
+{{-- href="{{ route('admin.profile') }}" method="post" --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownBtn = document.getElementById('dropdown-btn');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        dropdownBtn.addEventListener('mouseenter', function() {
+            dropdownMenu.classList.remove('hidden');
+        });
+
+        dropdownBtn.addEventListener('mouseleave', function() {
+            dropdownMenu.classList.add('hidden');
+        });
+
+        dropdownMenu.addEventListener('mouseenter', function() {
+            dropdownMenu.classList.remove('hidden');
+        });
+
+        dropdownMenu.addEventListener('mouseleave', function() {
+            dropdownMenu.classList.add('hidden');
+        });
+    });
+</script>

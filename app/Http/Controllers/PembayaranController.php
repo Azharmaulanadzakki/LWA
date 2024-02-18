@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use App\Exports\PembayaranExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PembayaranController extends Controller
 {
@@ -12,15 +14,16 @@ class PembayaranController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-
-        $pembayarans = Pembayaran::when($search, function ($query) use ($search) {
-            return $query->where('tanggal', 'like', '%' . $search . '%');
-        })
-            ->latest()
-            ->paginate(5);
-
+        $pembayarans = Pembayaran::latest()->paginate(10);
         return view('admin.pembayaran.index', compact('pembayarans'));
+    }
+
+    // untuk export ke excel
+    public function export()
+    {
+        $pembayarans = Pembayaran::latest()->get();
+
+        return Excel::download(new PembayaranExport($pembayarans), 'pembayaran.xlsx');
     }
 
     /**
@@ -36,7 +39,6 @@ class PembayaranController extends Controller
      */
     public function store(string $id)
     {
-        
     }
 
     /**

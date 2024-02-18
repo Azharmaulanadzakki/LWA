@@ -1,16 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FAQController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\LoginGoogleController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\MateriController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PembayaranController;
-use App\Http\Controllers\ToolController;
+use App\Http\Controllers\TodoController;
 
 // Route guest ( belum login )
 Route::group(['middleware' => 'guest'], function () {
@@ -23,7 +24,6 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register.post');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
-    
 });
 
 // Route yg udah login
@@ -38,7 +38,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
     Route::put('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
+    Route::resource('todos', TodoController::class);
+
 });
+
+
 
 // Route admin
 Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
@@ -46,10 +50,12 @@ Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
     Route::get('/admin/profile', [AuthController::class, 'profile'])->name('admin.profile');
     Route::put('/admin/profile/update', [AuthController::class, 'updateProfile'])->name('admin.profile.update');
     Route::resource('/admin/mapel', MapelController::class);
+    Route::resource('/admin/faq', FAQController::class);
     Route::resource('/admin/materi', MateriController::class);
     Route::resource('/admin/tool', ToolController::class);
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/pembayaran', PembayaranController::class);
+    Route::get('/pembayaran/export', [PembayaranController::class, 'export'])->name('pembayaran.export');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });
 

@@ -5,9 +5,6 @@
 
     <body id="home-page" class="bg-slate-100 box-border antialiased">
 
-        {{-- SnapToken Popup --}}
-        {{-- <div id="snap-container"></div> --}}
-
         <!-- Hero Section -->
         <header class="text-gray-800 py-10 px-4 sm:px-8 md:px-16 lg:px-24">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -47,7 +44,7 @@
                     <div
                         class="absolute -bottom-8 left-20 w-[22rem] h-[22rem] bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-100 animate-blob animation-delay-4000">
                     </div>
-                    <img src="{{ asset('img/fix.webp') }}" class="img-fluid z-10 relative" alt="">
+                    <img src="{{ asset('img/fix.webp') }}" class="img-fluid z-10 relative p-5" alt="">
                 </div>
             </div>
 

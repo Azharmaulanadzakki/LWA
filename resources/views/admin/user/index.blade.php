@@ -8,11 +8,6 @@
         @include('sweetalert::alert')
 
         <div class="flex-grow text-gray-800">
-            <header class="flex items-center h-20 px-6 sm:px-10 bg-white">
-
-
-
-            </header>
             <main class="p-6 sm:p-10 space-y-2">
                 <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
                     <div class="mr-6">

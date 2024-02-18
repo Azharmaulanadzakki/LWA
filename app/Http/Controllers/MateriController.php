@@ -110,7 +110,6 @@ class MateriController extends Controller
             'tautan'    => 'required|url',
         ]);
 
-        // Update Materi without changing gif
         $materi->update([
             'judul'     => $request->judul,
             'isi'       => $request->isi,

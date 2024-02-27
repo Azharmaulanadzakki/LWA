@@ -15,7 +15,7 @@
             </button>
         </a>
 
-        <a href="">
+        <a href="{{route('mycourse.index')}}">
             <button
                 class="flex items-center px-4 py-2.5 font-semibold bg-gray-700 hover:bg-gray-800 transition-colors text-white text-base border rounded-full w-full">
                 My Course

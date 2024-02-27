@@ -53,7 +53,7 @@ class HomeController extends Controller
         }
     }
 
-    function viewMateri($parent_id)
+    public function viewMateri($parent_id)
     {
         $parent = Mapel::find($parent_id);
 
@@ -78,7 +78,7 @@ class HomeController extends Controller
         return view('materi', compact('materis', 'parent', 'playlists', 'parent_id'));
     }
 
-    function payment($parent_id)
+    public function payment($parent_id)
     {
 
         // Ambil data parent dari tabel mapels sesuai dengan $parent_id
@@ -91,7 +91,7 @@ class HomeController extends Controller
         $pembayaran = Pembayaran::create([
             'harga' => $parent->harga,
             'tanggal' => date('Y-m-d'),
-            'mapel_id' => $parent->id,
+            'mapel_id' => $parent->id,  
             'user_id' => $user->id,
         ]);
 
@@ -112,8 +112,6 @@ class HomeController extends Controller
             ),
         );
 
-        // dd($params);
-
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
         $pembayaran->snapToken = $snapToken;
@@ -125,13 +123,12 @@ class HomeController extends Controller
         ]);
     }
 
-    public function destroy(Pembayaran $pembayaran)
+    public function snapClose(Pembayaran $pembayaran)
     {
-        // Hapus rekord dari database
-        $pembayaran->delete();
+        $pembayaran->update(['status' => 'failed', 'snapToken' => null]);
     }
 
-    function midtransCallback(Request $request)
+    public function midtransCallback(Request $request)
     {
         $serverKey = config('midtrans.server_key');
         $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
@@ -139,7 +136,7 @@ class HomeController extends Controller
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture' || $request->transaction_status == 'settelment') {
                 $pembayaran = Pembayaran::find($request->order_id);
-                $pembayaran->update(['status' => 'sukses', 'snapToken' => null]);
+                $pembayaran->update(['status' => 'success', 'snapToken' => null]);
 
                 $mapel = Mapel::find($pembayaran->mapel_id);
                 $user = Mapel::find($pembayaran->user_id);
@@ -165,7 +162,8 @@ class HomeController extends Controller
         $pembayaran->update(['status' => 'success', 'snapToken' => null]);
 
         $mapel = Mapel::find($pembayaran->mapel_id);
-        $user = Mapel::find($pembayaran->user_id);
+        $user = User::find($pembayaran->user_id);
+
         MapelUser::create(['mapel_id' => $mapel->id, 'user_id' => $user->id]);
     }
 

@@ -60,7 +60,7 @@
 
             <!-- image -->
             <div class="md:block hidden">
-                <img class="rounded-2xl aspect-[9/12]" src="/img/test.jpg" alt="Starboy">
+                <img class="rounded-2xl aspect-[9/12]" src="img/showcase4.png" alt="Starboy">
             </div>
         </div>
 

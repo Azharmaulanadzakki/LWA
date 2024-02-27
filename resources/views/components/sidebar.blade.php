@@ -39,13 +39,13 @@
                             <span class="group-hover:text-white">Data Materi</span>
                         </a>
                     </li>
-                    <li class="min-w-max">
+                    {{-- <li class="min-w-max">
                         <a href="{{ route('tool.index') }}"
                             class="group flex items-center space-x-6 px-4 py-3  text-gray-600 hover:bg-gray-600 hover:text-white w-full">
                             <i class="fa-solid fa-toolbox"></i>
                             <span class="group-hover:text-white">Data Tools Materi</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="min-w-max">
                         <a href="{{ route('user.index') }}" method="GET">
                             <button

@@ -1,4 +1,4 @@
-<section class="flex container mt-32 ml-20">
+<section id="about-section" class="flex container mt-32 ml-20">
     <div class="flex justify-start items-start">
         <div class="item-step flex w-full">
             <img src="{{ asset('img/step1.png') }}" alt="" class="w-[25rem] object-cover rounded-lg">

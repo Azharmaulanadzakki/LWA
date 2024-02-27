@@ -65,8 +65,8 @@
                     },
                     onClose: function(result) {
                         $.ajax({
-                            type: "DELETE",
-                            url: "{{ route('payment.destroy', '') }}" + "/" +
+                            type: "get",
+                            url: "{{ route('snapClose', '') }}" + "/" +
                                 response.pembayaran_id,
                             data: {
                                 "_token": "{{ csrf_token() }}",

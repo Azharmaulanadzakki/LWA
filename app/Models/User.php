@@ -49,7 +49,7 @@ class User extends Authenticatable implements CanResetPassword
     ];
 
     public function mapels()
-    {
+    {   
         return $this->belongsToMany(User::class, 'mapel_user')->wherePivot('user_id', Auth::user()->id)->withPivot('mapel_id');
     }
 

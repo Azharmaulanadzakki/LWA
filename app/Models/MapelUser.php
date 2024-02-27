@@ -12,4 +12,9 @@ class MapelUser extends Model
     protected $table = 'mapel_user';
 
     protected $fillable = ['id', 'mapel_id', 'user_id'];
+
+    public function mapels()
+    {
+        return $this->belongsTo(Mapel::class, 'mapel_id', 'id');
+    }
 }

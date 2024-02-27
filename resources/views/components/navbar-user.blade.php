@@ -71,15 +71,17 @@
                         aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="#" onclick="scrollToAbout()"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:text-[#7F56D9] md:p-0">About</a>
                 </li>
                 <li>
-                    <a href="#"
-                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:text-[#7F56D9] md:p-0">Services</a>
+                    <a href="#" onclick="scrollToFaq()"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:text-[#7F56D9] md:p-0">
+                        FAQ
+                    </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="#" onclick="scrollToContact()"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:text-[#7F56D9] md:p-0">Contact</a>
                 </li>
                 <li>

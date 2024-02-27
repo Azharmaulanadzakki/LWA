@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\MateriController;
+use App\Http\Controllers\MycourseController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\TodoController;
@@ -32,13 +33,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/materi/{parent_id}', [HomeController::class, 'getMateri'])->name('getMateri');
     Route::get('/view-materi/{parent_id}', [HomeController::class, 'viewMateri'])->name('materis.view');
     Route::get('/payment/{parent_id}', [HomeController::class, 'payment'])->name('payment');
-    Route::delete('/payment/{pembayaran}', [HomeController::class, 'destroy'])->name('payment.destroy');
+    Route::get('/snap-close/{pembayaran}', [HomeController::class, 'snapClose'])->name('snapClose');
     Route::get('/callback/{pembayaran}', [HomeController::class, 'callback'])->name('callback');
     Route::get('/tools', [HomeController::class, 'tools'])->name('tools');
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
     Route::put('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
     Route::resource('todos', TodoController::class);
+    Route::resource('mycourse', MycourseController::class);
 
 });
 

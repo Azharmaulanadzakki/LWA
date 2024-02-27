@@ -47,8 +47,11 @@
                                             IMAGE
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            <span class="sr-only">Edit</span>
+                                            
                                         </th>
+                                        {{-- <th scope="col" class="px-6 py-3">
+                                            <span class="sr-only">Edit</span>
+                                        </th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,7 +68,7 @@
                                             <td class="px-6 py-4">
                                                 {{ $tool->tautan }}
                                             </td>
-                                            <td class="px-6 py-4 text-center">
+                                            <td class="px-6 py-4 ">
                                                 {{ optional($tool->mapel)->judul }}
                                             </td>
                                             <td class="px-6 py-4">
@@ -74,12 +77,12 @@
                                             </td>
 
                                             <td class="px-6 py-4 text-right flex justify-end">
-                                                <form action="{{ route('tool.edit', ['tool' => $tool->id]) }}">
+                                                {{-- <form action="{{ route('tool.edit', ['tool' => $tool->id]) }}">
                                                     <button
                                                         class="inline-flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md mr-4">
                                                         Edit
                                                     </button>
-                                                </form>
+                                                </form> --}}
 
                                                 <form action="{{ route('tool.destroy', ['tool' => $tool->id]) }}"
                                                     method="POST" id="deleteForm">

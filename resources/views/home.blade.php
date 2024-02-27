@@ -44,7 +44,7 @@
                     <div
                         class="absolute -bottom-8 left-20 w-[22rem] h-[22rem] bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-100 animate-blob animation-delay-4000">
                     </div>
-                    <img src="{{ asset('img/fix.webp') }}" class="img-fluid z-10 relative p-5" alt="">
+                    <img src="{{ asset('img/section.png') }}" class="img-fluid z-10 relative p-5" alt="">
                 </div>
             </div>
 
@@ -110,7 +110,7 @@
         @include('components.faq')
         @include('components.footer')
 
-        {{-- script show more --}}
+        {{-- script show dan less more --}}
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const mapelItems = document.querySelectorAll(".mapel-item");
@@ -157,10 +157,44 @@
                 });
             });
         </script>
-
+        
+        {{-- Script untuk scroll to ... --}}
         <script>
             function scrollToCard() {
                 const aboutSection = document.getElementById('card-section');
+
+                if (aboutSection) {
+                    // Gunakan fungsi scrollIntoView untuk melakukan scroll ke elemen tersebut
+                    aboutSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            function scrollToContact() {
+                const aboutSection = document.getElementById('contact-section');
+
+                if (aboutSection) {
+                    // Gunakan fungsi scrollIntoView untuk melakukan scroll ke elemen tersebut
+                    aboutSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            function scrollToAbout() {
+                const aboutSection = document.getElementById('about-section');
+
+                if (aboutSection) {
+                    // Gunakan fungsi scrollIntoView untuk melakukan scroll ke elemen tersebut
+                    aboutSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            function scrollToFaq() {
+                const aboutSection = document.getElementById('faq-section');
 
                 if (aboutSection) {
                     // Gunakan fungsi scrollIntoView untuk melakukan scroll ke elemen tersebut
@@ -189,6 +223,6 @@
             };
         </script>
 
-
     </body>
+    
 @endsection

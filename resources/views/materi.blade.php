@@ -6,7 +6,7 @@
     <body class="bg-gray-100 box-border antialiased font-['Poppins']">
         @if ($materis->isEmpty())
             <div class="text-center mt-20">
-                <p class="text-gray-700 text-xl font-bold">No material available at the moment.</p>
+                <p class="text-gray-700 text-xl font-bold">Course not available at the moment.</p>
                 <form action="{{ route('home.index') }}" class="flex justify-center items-center mt-10">
                     <button class="px-4 py-3 rounded-md bg-gray-800 hover:bg-gray-900 duration-200 text-white shadow-md">
                         <i class="fa-regular fa-arrow-left mx-2 text-lg"></i> <span class="mx-2">Back to home</span>
@@ -108,10 +108,10 @@
                         <p class="px-14 py-2 font-semibold text-lg">About</p>
                     </button>
 
-                    <button onclick="scrollToTools()"
+                    {{-- <button onclick="scrollToTools()"
                         class="mt-10 bg-gray-300 rounded-3xl transition-colors focus:bg-gray-950 focus:text-gray-100 focus:outline-none focus:border-none focus:ring-0">
                         <p class="px-14 py-2 font-semibold text-lg">Tools</p>
-                    </button>
+                    </button> --}}
                 </div>
 
                 <div class="flex items-start justify-start mx-20 w-[40rem] mb-4">
@@ -121,14 +121,14 @@
                     </p>
                 </div>
 
-                <button
+                {{-- <button
                     class="my-4 mx-20 bg-gray-300 rounded-3xl transition-colors focus:bg-gray-900 focus:text-gray-100 focus:outline-none focus:border-none focus:ring-0">
                     <p class="px-14 py-2 font-semibold text-lg">Tools</p>
-                </button>
+                </button> --}}
             @endforeach
         @endif
 
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 my-4 mx-20">
+        {{-- <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 my-4 mx-20">
             @foreach ($tools as $tool)
                 <div id="tool-section" class="rounded-3xl shadow-lg mapel-item">
                     <div class="rounded-3xl shadow-lg bg-white">
@@ -160,7 +160,7 @@
                     </div>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
 
         <script>
             // Fungsi untuk melakukan scroll ke elemen dengan ID 'tools-section'

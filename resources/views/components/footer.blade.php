@@ -1,4 +1,4 @@
-<footer class="w-full min-h-screen flex items-center justify-center bg-transparent">
+<footer id="contact-section" class="w-full min-h-screen flex items-center justify-center bg-transparent">
     <div class="md:w-2/3 w-full px-4 text-gray-800 flex flex-col">
         <div class="w-full text-7xl font-bold">
             <h1 class="w-full md:w-2/3">How can we help you. get
@@ -35,8 +35,8 @@
                         </svg>
                     </a>
                 </div>
-                <div class="bg-blue-500 px-4 py-2 rounded-lg">
-                    <a href="https://wa.me/6281359990873?text= Halo Saya ingin Bertanya " class="text-white ">
+                <div class="bg-emerald-400 hover:bg-emerald-600 transition-colors duration-300 px-4 py-2 rounded-lg">
+                    <a href="https://wa.me/62881026650735?text= Halo Saya ingin Bertanya " class="text-white ">
                         <i class="fa-brands fa-whatsapp text-xl"></i> Contact Us
                     </a>
                 </div>

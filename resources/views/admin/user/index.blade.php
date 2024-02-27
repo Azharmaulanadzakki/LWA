@@ -78,12 +78,12 @@
                                             {{ $user->role }}
                                         </td>
                                         <td class="px-6 py-4 flex gap-2 justify-center text-right items-center">
-                                            <form action="{{ route('user.edit', ['user' => $user->id]) }}">
+                                            {{-- <form action="{{ route('user.edit', ['user' => $user->id]) }}">
                                                 <button
                                                     class="inline-flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md mr-4">
                                                     Edit
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                             <form action="{{ route('user.destroy', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
